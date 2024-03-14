@@ -19,23 +19,29 @@ public class AguileraEsclasansLeizaola {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String[] info = Data.stringToArray("test\\Datasets\\Booking_hotel - reservas.csv");
+       // String info = Data.obtainData("test\\Datasets\\Booking_hotel - reservas.csv");
         
-        for (int i = 0; i < info.length; i++){
-            System.out.println(info[i]);
-        }
-//        Tree example = ConvertData.ConvertRegisters();
-//        
-//       System.out.println(example.getpRoot());
-//        if (example.getpRoot() != null) {
-//            System.out.println("bien");
-//
+//       String[] info = Data.stringToArray("test\\Datasets\\Booking_hotel - reservas.csv");
+       
+//        System.out.println(info);
+//        for (int i = 0; i < info.length; i++){
+//            System.out.println(info[i]);
 //        }
-//
-//        example.printTree(example.getpRoot(), "", true);
+        Tree example = ConvertData.ConvertRegisters();
+        
+       //System.out.println(example.getpRoot().getData().toString());
+       
+        if (example.getpRoot() != null) {
+            System.out.println("bien");
+
+        }
+
+   //     example.printTree(example.getpRoot(), "", true);
 //        
 //System.out.println(Data.obtainData("test\\Datasets\\Booking_hotel - reservas.csv"));
 
-    }
+    
 
 }
+
+    }

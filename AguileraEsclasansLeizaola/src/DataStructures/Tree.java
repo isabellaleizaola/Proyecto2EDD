@@ -26,7 +26,7 @@ public class Tree {
         Node newNode = new Node(newReservation, newReservation.getId());
         if (pRoot == null) {
             // aqui no puedo hacer de una pRoot = newReservation?
-            pRoot.setData(newNode);
+            this.pRoot = newNode;
             //pRoot.setData(newReservation);
         } else {
             if (pRoot.getId() > newReservation.getId()) {

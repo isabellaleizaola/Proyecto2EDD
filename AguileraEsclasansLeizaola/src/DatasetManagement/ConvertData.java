@@ -18,9 +18,9 @@ public class ConvertData {
 
     public static Tree ConvertRegisters() {
         String[] info = stringToArray("test\\Datasets\\Booking_hotel - reservas.csv");
-        for (int i = 0; i<info.length; i ++){
-            System.out.println(info[i]);
-        }
+//        for (int i = 0; i<info.length; i ++){
+//            System.out.println(info[i]);
+//        }
         Tree reservationsTree = new Tree();
 
 //ci,primer_nombre,segundo_nombre,email,genero,tipo_hab,celular,llegada,salida
@@ -33,27 +33,30 @@ public class ConvertData {
 //17.347.235,Debera,Cohen,dcohen6@scientificamerican.com,Female,triple,(277) 7802138,26/09/2023,01/10/20um_hab
 //
         for (int i = 1; i < info.length; i++) {
-        System.out.println("hasta aqui estamos bien");
             String[] person = info[i].split(",");
-
+            person.toString();
             int id = Integer.valueOf(person[0].replace(".", "").trim());
-            String firstName = person[0].trim();
-            String lastName = person[1].trim();
-            String email = person[2].trim();
-            String gender = person[3].trim();
-            String typeOfRoom = person[4].trim();
-            String phone = person[5].trim();
-            String arrivalDate = person[6].trim();
-            String departureDate = person[7].trim();
+            String firstName = person[1].trim();
+            System.out.println(firstName);
+            String lastName = person[2].trim();
+            String email = person[3].trim();
+            String gender = person[4].trim();
+            String typeOfRoom = person[5].trim();
+            String phone = person[6].trim();
+            String arrivalDate = person[7].trim();
+            String departureDate = person[8].trim();
 
             Reservation reservationInfo = new Reservation(id, firstName, lastName, email, gender, typeOfRoom, phone, arrivalDate, departureDate);
-
-            if (reservationsTree.getpRoot() == null) {
-                Node root = new Node(reservationInfo, reservationInfo.getId());
-                reservationsTree.setpRoot(root);
-            } else {
+        
+            System.out.println("hasta aqui estamos bien");
+            
+            reservationInfo.toString();
+//            if (reservationsTree.getpRoot() == null) {
+//                Node root = new Node(reservationInfo, reservationInfo.getId());
+//                reservationsTree.setpRoot(root);
+//            } else {
                 reservationsTree.insertReservation(reservationsTree.getpRoot(), reservationInfo);
-            }
+//            }
         }
         return reservationsTree;
     }

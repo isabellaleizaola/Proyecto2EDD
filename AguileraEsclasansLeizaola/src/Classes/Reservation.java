@@ -52,12 +52,23 @@ public class Reservation {
     public Reservation() {
     }
 
+
+//    public void sout(){
+//        String toString = "id: " + Integer.toString(getId())
+//        + "Nombre: " + this.getClientFirstName())
+//        + "Apellido: " + this.getClientLastName()
+//        +  "Email: " + this.getClientEmail()
+//        + "Genero: " + this;
+//    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" + "id=" + id + ", clientFirstName=" + clientFirstName + ", clientLastName=" + clientLastName + ", clientEmail=" + clientEmail + ", clientGender=" + clientGender + ", typeOfRoom=" + typeOfRoom + ", clientPhone=" + clientPhone + ", dateOfArrival=" + dateOfArrival + ", dateOfDeparture=" + dateOfDeparture + '}';
+    }
     
     
     
-    
-    
-    /**
+        /**
      * @return the id
      */
     public int getId() {
