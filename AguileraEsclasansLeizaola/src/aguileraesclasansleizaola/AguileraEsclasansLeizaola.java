@@ -29,7 +29,7 @@ public class AguileraEsclasansLeizaola {
 //        }
         Tree example = ConvertData.ConvertRegisters();
         
-       //System.out.println(example.getpRoot().getData().toString());
+       System.out.println(example.getpRoot().getData().toString());
        
         if (example.getpRoot() != null) {
             System.out.println("bien");

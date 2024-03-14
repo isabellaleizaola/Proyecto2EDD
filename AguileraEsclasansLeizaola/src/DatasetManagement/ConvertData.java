@@ -34,10 +34,10 @@ public class ConvertData {
 //
         for (int i = 1; i < info.length; i++) {
             String[] person = info[i].split(",");
-            person.toString();
+            
             int id = Integer.valueOf(person[0].replace(".", "").trim());
             String firstName = person[1].trim();
-            System.out.println(firstName);
+ 
             String lastName = person[2].trim();
             String email = person[3].trim();
             String gender = person[4].trim();
@@ -48,14 +48,12 @@ public class ConvertData {
 
             Reservation reservationInfo = new Reservation(id, firstName, lastName, email, gender, typeOfRoom, phone, arrivalDate, departureDate);
         
-            System.out.println("hasta aqui estamos bien");
-            
-            reservationInfo.toString();
 //            if (reservationsTree.getpRoot() == null) {
 //                Node root = new Node(reservationInfo, reservationInfo.getId());
 //                reservationsTree.setpRoot(root);
 //            } else {
                 reservationsTree.insertReservation(reservationsTree.getpRoot(), reservationInfo);
+               // System.out.println(reservationsTree.getpRoot().getData().toString());
 //            }
         }
         return reservationsTree;
