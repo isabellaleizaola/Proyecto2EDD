@@ -13,19 +13,21 @@ import Classes.Reservation;
 public class Node {
     private Object data;
     private int id;
+    private int height;
     private Node leftSon;
-    private Node rigthSon;
+    private Node rightSon;
 
     public Node(Object data, Node leftSon, Node rigthSon) {
         this.data = data;
         this.leftSon = leftSon;
-        this.rigthSon = rigthSon;
+        this.rightSon = rigthSon;
     }
 
     public Node(Object data) {
         this.data = data;
+        this.height = 1;
         this.leftSon = null;
-        this.rigthSon =  null;
+        this.rightSon =  null;
     }
 
     public Node() {
@@ -34,7 +36,7 @@ public class Node {
     public Node(Reservation newReservation, int id){
         this.data = newReservation;
         this.id = id;
-        this.rigthSon = null;
+        this.rightSon = null;
         this.leftSon = null;
     }
     
@@ -70,17 +72,17 @@ public class Node {
     }
 
     /**
-     * @return the rigthSon
+     * @return the rightSon
      */
-    public Node getRigthSon() {
-        return rigthSon;
+    public Node getRightSon() {
+        return rightSon;
     }
 
     /**
-     * @param rigthSon the rigthSon to set
+     * @param rightSon the rightSon to set
      */
-    public void setRigthSon(Node rigthSon) {
-        this.rigthSon = rigthSon;
+    public void setRightSon(Node rightSon) {
+        this.rightSon = rightSon;
     }
 
     /**
@@ -96,6 +98,21 @@ public class Node {
     public void setId(int id) {
         this.id = id;
     }
+
+    /**
+     * @return the height
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * @param height the height to set
+     */
+    public void setHeight(int height) {
+        this.height = height;
+    }
+    
     
     
 }
