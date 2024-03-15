@@ -20,36 +20,123 @@ public class Tree {
 
     public Tree() {
     }
-
-    // hay que revisarlo. ESTE METODO SOLO SIRVE PARA AGREGAR NODS DE TIPO RESERVACION AL ARBOL
+    
     public void insertReservation(Reservation newReservation) {
-        Node newNode = new Node(newReservation, newReservation.getId());
-
-        if (pRoot == null) {
-            pRoot = newNode;
-        } else {
-            Node currentNode = pRoot;
-            while (true) {
-                int comparison = newReservation.getId() - ((Reservation) currentNode.getData()).getId();
-                if (comparison < 0) {
-                    if (currentNode.getLeftSon() == null) {
-                        currentNode.setLeftSon(newNode);
-                        break;
-                    } else {
-                        currentNode = currentNode.getLeftSon();
-                    }
-                } else {
-                    if (currentNode.getRightSon() == null) {
-                        currentNode.setRightSon(newNode);
-                        break;
-                    } else {
-                        currentNode = currentNode.getRightSon();
-                    }
-                }
-            }
-        }
+        pRoot = insertReservation(pRoot, newReservation);
     }
 
+   
+    private Node insertReservation(Node node, Reservation newReservation) {
+        
+        if (node == null) {
+            return new Node(newReservation, newReservation.getId());
+        }
+
+        int comparison = newReservation.getId() - ((Reservation) node.getData()).getId();
+        if (comparison < 0) {
+            node.setLeftSon(insertReservation(node.getLeftSon(), newReservation));
+        } else if (comparison > 0) {
+            node.setRightSon(insertReservation(node.getRightSon(), newReservation));
+        } else {
+           
+        }
+
+  
+        node.setHeight(1 + Math.max(getHeight(node.getLeftSon()), getHeight(node.getRightSon())));
+
+   
+        int balance = getBalance(node);
+
+     
+        if (balance > 1 && newReservation.getId() < ((Reservation) node.getLeftSon().getData()).getId()) {
+            return rotateRight(node);
+        }
+
+ 
+        if (balance < -1 && newReservation.getId() > ((Reservation) node.getRightSon().getData()).getId()) {
+            return rotateLeft(node);
+        }
+
+    
+        if (balance > 1 && newReservation.getId() > ((Reservation) node.getLeftSon().getData()).getId()) {
+            node.setLeftSon(rotateLeft(node.getLeftSon()));
+            return rotateRight(node);
+        }
+
+     
+        if (balance < -1 && newReservation.getId() < ((Reservation) node.getRightSon().getData()).getId()) {
+            node.setRightSon(rotateRight(node.getRightSon()));
+            return rotateLeft(node);
+        }
+
+        return node;
+    }
+    
+    
+    private Node rotateLeft(Node node) {
+        Node rightChild = node.getRightSon();
+        Node leftGrandchild = rightChild.getLeftSon();
+
+    
+        rightChild.setLeftSon(node);
+        node.setRightSon(leftGrandchild);
+
+        // Actualiza heights
+        node.setHeight(1 + Math.max(getHeight(node.getLeftSon()), getHeight(node.getRightSon())));
+        rightChild.setHeight(1 + Math.max(getHeight(rightChild.getLeftSon()), getHeight(rightChild.getRightSon())));
+
+        return rightChild;
+    }
+
+    
+    private Node rotateRight(Node node) {
+        Node leftChild = node.getLeftSon();
+        Node rightGrandchild = leftChild.getRightSon();
+
+      
+        leftChild.setRightSon(node);
+        node.setLeftSon(rightGrandchild);
+
+    
+        node.setHeight(1 + Math.max(getHeight(node.getLeftSon()), getHeight(node.getRightSon())));
+        leftChild.setHeight(1 + Math.max(getHeight(leftChild.getLeftSon()), getHeight(leftChild.getRightSon())));
+
+        return leftChild;
+    }
+
+ 
+    private int getBalance(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        return getHeight(node.getLeftSon()) - getHeight(node.getRightSon());
+    }
+
+  
+    private int getHeight(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        return node.getHeight();
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public void printTree() {
         printTree(pRoot, "");
     }
@@ -97,6 +184,21 @@ public class Tree {
             System.out.println(((Reservation) node.getData()).getId());
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @return the pRoot
      */
@@ -111,77 +213,9 @@ public class Tree {
         this.pRoot = pRoot;
     }
     
+
     
-    public void balanceTree() {
-        pRoot = balanceSubtree(pRoot);
-    }
-
-    private Node balanceSubtree(Node node) {
-        if (node == null) {
-            return null;
-        }
-
-        int balanceFactor = getBalanceFactor(node);
-
-        if (balanceFactor > 1) {
-            if (getBalanceFactor(node.getLeftSon()) >= 0) {
-                // Left-Left case
-                return rotateRight(node);
-            } else {
-                // Left-Right case
-                node.setLeftSon(rotateLeft(node.getLeftSon()));
-                return rotateRight(node);
-            }
-        } else if (balanceFactor < -1) {
-            if (getBalanceFactor(node.getRightSon()) <= 0) {
-                // Right-Right case
-                return rotateLeft(node);
-            } else {
-                // Right-Left case
-                node.setRightSon(rotateRight(node.getRightSon()));
-                return rotateLeft(node);
-            }
-        }
-
-        return node;
-    }
-
-    private int getHeight(Node node) {
-        if (node == null) {
-            return 0;
-        }
-        return node.getHeight();
-    }
-
-    private int getBalanceFactor(Node node) {
-        return getHeight(node.getLeftSon()) - getHeight(node.getRightSon());
-    }
-
-    private Node rotateRight(Node node) {
-        Node newRoot = node.getLeftSon();
-        node.setLeftSon(newRoot.getRightSon());
-        newRoot.setRightSon(node);
-
-        updateHeight(node);
-        updateHeight(newRoot);
-
-        return newRoot;
-    }
-
-    private Node rotateLeft(Node node) {
-        Node newRoot = node.getRightSon();
-        node.setRightSon(newRoot.getLeftSon());
-        newRoot.setLeftSon(node);
-
-        updateHeight(node);
-        updateHeight(newRoot);
-
-        return newRoot;
-    }
-
-    private void updateHeight(Node node) {
-        int leftHeight = getHeight(node.getLeftSon());
-        int rightHeight = getHeight(node.getRightSon());
-        node.setHeight(Math.max(leftHeight, rightHeight) + 1);
-    }
 }
+    
+    
+   

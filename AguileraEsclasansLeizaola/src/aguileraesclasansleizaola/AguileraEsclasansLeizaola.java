@@ -55,14 +55,15 @@ public class AguileraEsclasansLeizaola {
         Reservation resevacion9 = new Reservation(13,"s","s","s","s","s","S","s","s");
         
 
-        // Insert nodes into the tree
         tree.insertReservation(resevacion);
         tree.insertReservation(resevacion1);
         tree.insertReservation(resevacion2);
         tree.insertReservation(resevacion6);
         tree.insertReservation(resevacion3);
         tree.insertReservation(resevacion5);
-        tree.insertReservation(resevacion4);
+        tree.insertReservation(resevacion7);
+        tree.insertReservation(resevacion8);
+       
       
       
         
@@ -73,18 +74,14 @@ public class AguileraEsclasansLeizaola {
         System.out.println("");
         tree.printPreorder();
 
-        // Balance the tree
+    
         System.out.println("");
         tree.printTree();
         
-        tree.balanceTree();
         
         tree.printTree();
         
-     
-
-        // Print the tree
-        
+   
 
     }
 
