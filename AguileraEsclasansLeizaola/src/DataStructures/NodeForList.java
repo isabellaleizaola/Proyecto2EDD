@@ -9,6 +9,8 @@ import Classes.Record;
  *
  * @author Isabella
  */
+
+//hola
 public class NodeForList {
     private Object data;
     private NodeForList pNext;
