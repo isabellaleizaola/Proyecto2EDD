@@ -58,4 +58,13 @@ public class ConvertData {
         }
         return reservationsTree;
     }
+    
+    public static Tree convertHistory(){
+        String[] data = Data.stringToArray("test\\Datasets\\Booking_hotel - reservas.csv");
+        
+        Tree recordsTree = new Tree();
+        
+        
+        return recordsTree;
+    }
 }
