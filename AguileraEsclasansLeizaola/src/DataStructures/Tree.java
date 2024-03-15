@@ -51,14 +51,50 @@ public class Tree {
     }
 
     public void printTree() {
-    printTree(pRoot, "", true);
-}
+        printTree(pRoot, "");
+    }
 
-    private void printTree(Node node, String prefix, boolean isLeft) {
+    private void printTree(Node node, String indent) {
         if (node != null) {
-            System.out.println(prefix + (isLeft ? "├── " : "└── ") + ((Reservation) node.getData()).getId());
-            printTree(node.getLeftSon(), prefix + (isLeft ? "│   " : "    "), true);
-            printTree(node.getRightSon(), prefix + (isLeft ? "│   " : "    "), false);
+            System.out.println(indent + "!--- " + ((Reservation) node.getData()).getId());
+            printTree(node.getLeftSon(), indent + "L   ");
+            printTree(node.getRightSon(), indent + "R   ");
+        }
+    }
+    
+    public void printPreorder() {
+        printPreorder(pRoot);
+    }
+
+    private void printPreorder(Node node) {
+        if (node != null) {
+            System.out.println(((Reservation) node.getData()).getId());
+            printPreorder(node.getLeftSon());
+            printPreorder(node.getRightSon());
+        }
+    }
+
+    public void printInorder() {
+        printInorder(pRoot);
+    }
+
+    private void printInorder(Node node) {
+        if (node != null) {
+            printInorder(node.getLeftSon());
+            System.out.println(((Reservation) node.getData()).getId());
+            printInorder(node.getRightSon());
+        }
+    }
+
+    public void printPostorder() {
+        printPostorder(pRoot);
+    }
+
+    private void printPostorder(Node node) {
+        if (node != null) {
+            printPostorder(node.getLeftSon());
+            printPostorder(node.getRightSon());
+            System.out.println(((Reservation) node.getData()).getId());
         }
     }
     /**
@@ -76,68 +112,76 @@ public class Tree {
     }
     
     
-     public void balanceTree() {
+    public void balanceTree() {
         pRoot = balanceSubtree(pRoot);
     }
 
     private Node balanceSubtree(Node node) {
-        if (node == null)
+        if (node == null) {
             return null;
-
-        int balance = getBalanceFactor(node);
-
-        if (balance > 1) {
-            if (getBalanceFactor(node.getLeftSon()) < 0) {
-                node.setLeftSon(leftRotate(node.getLeftSon()));
-            }
-            return rightRotate(node);
         }
-        if (balance < -1) {
-            if (getBalanceFactor(node.getRightSon()) > 0) {
-                node.setRightSon(rightRotate(node.getRightSon()));
+
+        int balanceFactor = getBalanceFactor(node);
+
+        if (balanceFactor > 1) {
+            if (getBalanceFactor(node.getLeftSon()) >= 0) {
+                // Left-Left case
+                return rotateRight(node);
+            } else {
+                // Left-Right case
+                node.setLeftSon(rotateLeft(node.getLeftSon()));
+                return rotateRight(node);
             }
-            return leftRotate(node);
+        } else if (balanceFactor < -1) {
+            if (getBalanceFactor(node.getRightSon()) <= 0) {
+                // Right-Right case
+                return rotateLeft(node);
+            } else {
+                // Right-Left case
+                node.setRightSon(rotateRight(node.getRightSon()));
+                return rotateLeft(node);
+            }
         }
 
         return node;
     }
 
     private int getHeight(Node node) {
-        if (node == null)
+        if (node == null) {
             return 0;
+        }
         return node.getHeight();
     }
 
     private int getBalanceFactor(Node node) {
-        if (node == null)
-            return 0;
         return getHeight(node.getLeftSon()) - getHeight(node.getRightSon());
     }
 
-    private Node rightRotate(Node y) {
-        Node x = y.getLeftSon();
-        Node T2 = x.getRightSon();
+    private Node rotateRight(Node node) {
+        Node newRoot = node.getLeftSon();
+        node.setLeftSon(newRoot.getRightSon());
+        newRoot.setRightSon(node);
 
-        x.setRightSon(y);
-        y.setLeftSon(T2);
+        updateHeight(node);
+        updateHeight(newRoot);
 
-        y.setHeight(Math.max(getHeight(y.getLeftSon()), getHeight(y.getRightSon())) + 1);
-        x.setHeight(Math.max(getHeight(x.getLeftSon()), getHeight(x.getRightSon())) + 1);
-
-        return x;
+        return newRoot;
     }
 
-    private Node leftRotate(Node x) {
-        Node y = x.getRightSon();
-        Node T2 = y.getLeftSon();
+    private Node rotateLeft(Node node) {
+        Node newRoot = node.getRightSon();
+        node.setRightSon(newRoot.getLeftSon());
+        newRoot.setLeftSon(node);
 
-        y.setLeftSon(x);
-        x.setRightSon(T2);
+        updateHeight(node);
+        updateHeight(newRoot);
 
-        x.setHeight(Math.max(getHeight(x.getLeftSon()), getHeight(x.getRightSon())) + 1);
-        y.setHeight(Math.max(getHeight(y.getLeftSon()), getHeight(y.getRightSon())) + 1);
-
-        return y;
+        return newRoot;
     }
 
+    private void updateHeight(Node node) {
+        int leftHeight = getHeight(node.getLeftSon());
+        int rightHeight = getHeight(node.getRightSon());
+        node.setHeight(Math.max(leftHeight, rightHeight) + 1);
+    }
 }

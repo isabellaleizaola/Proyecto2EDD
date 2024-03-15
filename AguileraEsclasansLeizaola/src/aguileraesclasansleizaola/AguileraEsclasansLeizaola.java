@@ -43,24 +43,48 @@ public class AguileraEsclasansLeizaola {
 
     //Prueba d balancear
         Tree tree = new Tree();
-        Reservation resevacion = new Reservation(1,"s","s","s","s","s","S","s","s");
+        Reservation resevacion = new Reservation(4,"s","s","s","s","s","S","s","s");
         Reservation resevacion1 = new Reservation(2,"s","s","s","s","s","S","s","s");
         Reservation resevacion2 = new Reservation(3,"s","s","s","s","s","S","s","s");
-        Reservation resevacion3 = new Reservation(4,"s","s","s","s","s","S","s","s");
-        Reservation resevacion4 = new Reservation(8,"s","s","s","s","s","S","s","s");
+        Reservation resevacion3 = new Reservation(5,"s","s","s","s","s","S","s","s");
+        Reservation resevacion4 = new Reservation(6,"s","s","s","s","s","S","s","s");
+        Reservation resevacion5 = new Reservation(7,"s","s","s","s","s","S","s","s");
+        Reservation resevacion6 = new Reservation(1,"s","s","s","s","s","S","s","s");
+        Reservation resevacion7 = new Reservation(85,"s","s","s","s","s","S","s","s");
+        Reservation resevacion8 = new Reservation(90,"s","s","s","s","s","S","s","s");
+        Reservation resevacion9 = new Reservation(13,"s","s","s","s","s","S","s","s");
+        
 
         // Insert nodes into the tree
-        tree.insertReservation(resevacion4);
+        tree.insertReservation(resevacion);
         tree.insertReservation(resevacion1);
         tree.insertReservation(resevacion2);
+        tree.insertReservation(resevacion6);
         tree.insertReservation(resevacion3);
-        tree.insertReservation(resevacion);
+        tree.insertReservation(resevacion5);
+        tree.insertReservation(resevacion4);
+      
+      
+        
+        
+        tree.printInorder();
+        System.out.println("");
+        tree.printPostorder();
+        System.out.println("");
+        tree.printPreorder();
 
         // Balance the tree
+        System.out.println("");
+        tree.printTree();
+        
+        tree.balanceTree();
+        
+        tree.printTree();
+        
      
 
         // Print the tree
-        tree.printTree();
+        
 
     }
 
