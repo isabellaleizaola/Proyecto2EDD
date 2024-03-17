@@ -5,7 +5,6 @@ package DataStructures;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-import DataStructures.Node;
 import DataStructures.NodeForList;
 import Classes.Record;
 

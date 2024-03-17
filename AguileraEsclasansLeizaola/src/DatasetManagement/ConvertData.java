@@ -34,8 +34,10 @@ public class ConvertData {
 //
         for (int i = 1; i < info.length; i++) {
             String[] person = info[i].split(",");
+
             
             int id = Integer.valueOf(person[0].replace(".", "").trim());
+
             String firstName = person[1].trim();
  
             String lastName = person[2].trim();
@@ -47,19 +49,22 @@ public class ConvertData {
             String departureDate = person[8].trim();
 
             Reservation reservationInfo = new Reservation(id, firstName, lastName, email, gender, typeOfRoom, phone, arrivalDate, departureDate);
-        
-//            if (reservationsTree.getpRoot() == null) {
-//                Node root = new Node(reservationInfo, reservationInfo.getId());
-//                reservationsTree.setpRoot(root);
-//            } else {
-                reservationsTree.insertReservation(reservationsTree.getpRoot(), reservationInfo);
-               // System.out.println(reservationsTree.getpRoot().getData().toString());
-//            }
+
+
+            if (reservationsTree.getpRoot() == null) {
+                Node root = new Node(reservationInfo, reservationInfo.getId());
+                reservationsTree.setpRoot(root);
+            } else {
+                reservationsTree.insertReservation(reservationInfo);
+            }
+
         }
         return reservationsTree;
     }
     
-    public static Tree convertHistory(){
+
+        public static Tree convertHistory(){
+
         String[] data = Data.stringToArray("test\\Datasets\\Booking_hotel - reservas.csv");
         
         Tree recordsTree = new Tree();
@@ -67,4 +72,5 @@ public class ConvertData {
         
         return recordsTree;
     }
+
 }
