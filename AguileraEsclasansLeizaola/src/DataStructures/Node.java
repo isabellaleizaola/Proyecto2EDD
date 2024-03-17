@@ -29,6 +29,13 @@ public class Node {
         this.leftSon = null;
         this.rightSon =  null;
     }
+    
+       public Node(List data, int id) {
+        this.data = data;
+        this.id = id;
+        this.leftSon = null;
+        this.rightSon =  null;
+    }
 
     public Node() {
     }
@@ -40,6 +47,12 @@ public class Node {
         this.leftSon = null;
     }
     
+    
+    //Creo que no hace falta
+        public Node (Record record){
+        this.data =  record;
+    }
+
     
     
     
