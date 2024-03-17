@@ -65,7 +65,7 @@ public class ConvertData {
 
         public static Tree convertHistory(){
 
-        String[] data = Data.stringToArray("test\\Datasets\\Booking_hotel - reservas.csv");
+        String[] data = Data.stringToArray("test\\Datasets\\Booking_hotel - Histórico.csv");
         
         Tree recordsTree = new Tree();
         
