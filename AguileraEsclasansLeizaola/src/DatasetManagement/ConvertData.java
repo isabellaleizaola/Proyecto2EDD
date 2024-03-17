@@ -52,7 +52,7 @@ public class ConvertData {
                 Node root = new Node(reservationInfo, reservationInfo.getId());
                 reservationsTree.setpRoot(root);
             } else {
-                reservationsTree.insertReservation(reservationsTree.getpRoot(), reservationInfo);
+                reservationsTree.insertReservation(reservationInfo);
             }
         }
         return reservationsTree;
