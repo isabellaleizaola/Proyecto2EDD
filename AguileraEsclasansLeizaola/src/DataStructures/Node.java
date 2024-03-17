@@ -24,8 +24,9 @@ public class Node {
         this.rigthSon = rigthSon;
     }
 
-    public Node(Object data) {
+    public Node(List data, int id) {
         this.data = data;
+        this.id = id;
         this.leftSon = null;
         this.rigthSon =  null;
     }
@@ -39,6 +40,7 @@ public class Node {
 //        this.id = id;
 //    }
 //    
+    
     
     public Node (Record record){
         this.data =  record;
