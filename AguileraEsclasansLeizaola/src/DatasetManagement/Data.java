@@ -20,30 +20,36 @@ public class Data {
         String info = "";
         String line = "";
         String[] row = null;
-        
+
         try {
+         //   System.out.println("llegamos aqui");
             reader = new BufferedReader(new FileReader(file));
-            int i = 0;
+           // int i = 0;
             while ((line = reader.readLine()) != null) {
                 //row[i] = line; //row[i] = line.split("\n");
-                row = line.split("\n");
-                
-                info += row + "\n";
-                System.out.println(info);
+                if(!line.isEmpty()){
+                    
+                info += line + "\n"; 
+                }
+//System.out.println(line);
+                //row[i] = line;
+                //System.out.println(row[0]);
+                //info += row + "\n";
+                //System.out.println(info);
 //                for (String index : row) {
 //                    System.out.printf("%-20s", index);
 //                }
 //                System.out.println();
-//                i++;
+                //i++;
             }
             reader.close();
-            
+
         } catch (Exception e) {
 
         } finally {
             try {
-                if (reader != null){
-                reader.close();  
+                if (reader != null) {
+                    reader.close();
                 }
             } catch (IOException e) {
 
@@ -51,13 +57,20 @@ public class Data {
         }
         return info;
     }
-    
+
     // Este metodo retorna un array que tiene una linea 
-    public static String[] stringToArray(String file){
+    //String[] o void
+    public static String[] stringToArray(String file) {
         String data = obtainData(file);
-        return data.split("\n");
+//        return data;
+        String[] dataInArray = data.split("\n");
+//        for (int i = 0; i < data.length; i++) {
+//            System.out.println(data[i]);
+//        }
+//        return data;//data.split("\n");
+        return dataInArray;
     }
-    
-   
-    
+//    
+//   
+
 }

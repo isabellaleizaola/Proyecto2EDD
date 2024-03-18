@@ -11,9 +11,9 @@ import DataStructures.Tree;
  * @author user
  */
 public class Checkin {
-    HashTable huespedes;
-    Tree habitacion;
-    Tree reservacion;
+    private HashTable huespedes;
+    private Tree habitacion;
+    private Tree reservacion;
     
     public Checkin(HashTable huespedes,Tree habitacion, Tree reservacion){
         this.huespedes = huespedes;
@@ -22,12 +22,12 @@ public class Checkin {
     }
     
     
-    public void checkin(int id){
-        Reservation reserva = reservacion.buscar(id);
-        if(reserva != null){
-            Room hab = habitacion.buscarVacia(reserva.getTypeOfRoom());
-            huespedes.insertar(reserva.getId(), reserva.getClientFirstName(), reserva.getClientLastName(),reserva.getClientEmail(),reserva.getClientGender(),reserva.getClientPhone(),reserva.getDateOfArrival(),hab.getNumber());
-        }
-        
-    }
+//    public void checkin(int id){
+//        Reservation reserva = reservacion.buscar(id);
+//        if(reserva != null){
+//            Room hab = habitacion.buscarVacia(reserva.getTypeOfRoom());
+//            huespedes.insertar(reserva.getId(), reserva.getClientFirstName(), reserva.getClientLastName(),reserva.getClientEmail(),reserva.getClientGender(),reserva.getClientPhone(),reserva.getDateOfArrival(),hab.getNumber());
+//        }
+//        
+//    }
 }

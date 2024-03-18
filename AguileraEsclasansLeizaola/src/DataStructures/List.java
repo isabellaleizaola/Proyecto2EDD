@@ -5,7 +5,6 @@ package DataStructures;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-import DataStructures.Node;
 import DataStructures.NodeForList;
 import Classes.Record;
 
@@ -36,13 +35,24 @@ public class List {
         NodeForList newNode = new NodeForList(record);
         NodeForList aux = getpFirst();
         if (!isEmpty()){
-            while(aux != null){
+            while(aux.getpNext() != null){
                 aux = aux.getpNext();
             }
             aux.setpNext(newNode);
         }else{
             setpFirst(newNode);
         }
+    }
+    
+    public void printList(){
+        if (!isEmpty()){
+            NodeForList aux = pFirst;
+            while (aux != null){
+                System.out.println(aux.getData());
+                aux = aux.getpNext();
+            }
+        }
+ 
     }
 
     /**

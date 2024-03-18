@@ -6,6 +6,7 @@ package DataStructures;
 
 import Classes.Reservation;
 
+
 /**
  *
  * @author Isabella
@@ -15,7 +16,9 @@ public class Node {
     private int id;
     private int height;
     private Node leftSon;
+
     private Node rightSon;
+
 
     public Node(Object data, Node leftSon, Node rigthSon) {
         this.data = data;
@@ -23,22 +26,35 @@ public class Node {
         this.rightSon = rigthSon;
     }
 
-    public Node(Object data) {
+    public Node(List data, int id) {
         this.data = data;
+
+        this.id = id;
+
         this.height = 1;
+
         this.leftSon = null;
         this.rightSon =  null;
     }
     
-       public Node(List data, int id) {
-        this.data = data;
-        this.id = id;
-        this.leftSon = null;
-        this.rightSon =  null;
-    }
+
 
     public Node() {
     }
+
+    //AQUI ESTA EL PROBLEMAAAA
+//    public Node(List recordsOfRoom, int id){
+//        this.data = recordsOfRoom;
+//        this.id = id;
+//    }
+//    
+    
+    
+    public Node (Record record){
+        this.data =  record;
+    }
+
+    
     
     public Node(Reservation newReservation, int id){
         this.data = newReservation;
@@ -48,11 +64,10 @@ public class Node {
     }
     
     
-    //Creo que no hace falta
-        public Node (Record record){
-        this.data =  record;
-    }
 
+
+    
+    
     
     
     
@@ -112,6 +127,7 @@ public class Node {
         this.id = id;
     }
 
+
     /**
      * @return the height
      */
@@ -128,4 +144,7 @@ public class Node {
     
     
     
+    
+    
+
 }
