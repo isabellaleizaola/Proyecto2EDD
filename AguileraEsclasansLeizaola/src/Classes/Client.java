@@ -22,7 +22,7 @@ public class Client {
     private int room;
     private Client siguiente;
 
-    public Client(int id, String firstName, String LastName, String email, String gender, String phoneNumber, Date arrival, int room, Client siguiente) {
+    public Client(int id, String firstName, String LastName, String email, String gender, String phoneNumber, Date arrival, int room) {
         this.id = id;
         this.firstName = firstName;
         this.LastName = LastName;
@@ -31,7 +31,7 @@ public class Client {
         this.phoneNumber = phoneNumber;
         this.arrival = arrival;
         this.room = room;
-        this.siguiente = siguiente;
+        this.siguiente = null;
     }
 
     public Client() {

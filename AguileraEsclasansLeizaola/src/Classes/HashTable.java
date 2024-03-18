@@ -4,6 +4,8 @@
  */
 package Classes;
 
+import java.util.Date;
+
 /**
  *
  * @author user
@@ -25,16 +27,17 @@ public class HashTable {
         for (int i = 0; i < firstName.length(); i++) {
             char c = firstName.charAt(i);
             hash += (int) c;
-            
+}   
             for (int j = 0; j < LastName.length(); j++) {
                 char e = LastName.charAt(j);
                 hash += (int) e;
             }
             return hash % tamano;
+        
         }
-        public void insertar(String firstName, String LastName, int room){
+        public void insertar(int id, String firstName, String LastName, String email, String gender, String phoneNumber, Date arrival, int room){
             int posicion = this.Hash(firstName, LastName);
-            this.clientes[posicion].insertar(firstName, LastName, room);
+            this.clientes[posicion].insertar(id, firstName, LastName, email, gender, phoneNumber, arrival, room);
         }
         public Client buscar(String firstName, String LastName){
             int posicion = this.Hash(firstName, LastName);
@@ -46,7 +49,11 @@ public class HashTable {
        }
        public String imprimir(String firstName, String LastName){
             Client c = this.buscar(firstName, LastName);
-            return "Nombre: " + c.getFirstName() + "  " + c.getLastName() + "Habitacion:  "+  c.getRoom();
-            
+            if(c!= null){
+            return "Nombre: " + c.getFirstName() + "  " + c.getLastName() + " Habitacion:  "+  c.getRoom();
+            }else{
+                return "El usuario no existe";
+            }
 
+    }
 }

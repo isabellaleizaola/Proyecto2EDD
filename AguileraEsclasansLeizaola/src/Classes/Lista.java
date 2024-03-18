@@ -4,6 +4,8 @@
  */
 package Classes;
 
+import java.util.Date;
+
 /**
  *
  * @author user
@@ -15,14 +17,17 @@ public class Lista {
         primero= null;
         tamaño = 0;
     }
-    public void insertar(String firstName, String LastName, int room){
-        Client client = new Client (firstName,LastName,room);
+    public void insertar(int id, String firstName, String LastName, String email, String gender, String phoneNumber, String arrival, int room){
+        Client client = new Client (id, firstName, LastName, email, gender, phoneNumber, arrival, room);
         client.setSiguiente(this.primero);
         primero = client;
         tamaño ++;
     }
     public void eliminar(String firstName, String LastName){
         Client aux = this.primero;
+        if(aux.getFirstName().equals(firstName) && aux.getLastName().equals(LastName)){
+            this.primero = this.primero.getSiguiente();
+        }
         while(aux.getSiguiente() !=null && !aux.getSiguiente().getFirstName().equals(firstName) && !aux.getSiguiente().getLastName().equals(LastName)){
             aux = aux.getSiguiente();
         }
