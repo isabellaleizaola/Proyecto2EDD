@@ -17,6 +17,9 @@ public class RoomRecords {
     
     //private Tree recordsTree;
     
+    
+    //Este metodo retorna una lista de NodeForList que tienen como data un objeto del tipo Record.
+    //Retorna una lista de registros de una habitacion buscada
     public List returnRecordsRoom(int roomNumber){
         Tree recordsTree = ConvertData.convertHistory();
         Node node = recordsTree.searchRoom(roomNumber);
