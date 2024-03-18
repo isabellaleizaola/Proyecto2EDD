@@ -4,14 +4,19 @@
  */
 package aguileraesclasansleizaola;
 
+import Classes.HashTable;
 import Classes.Reservation;
 import DataStructures.Node;
 import DataStructures.Tree;
 import DatasetManagement.ConvertData;
 import DatasetManagement.Data;
 import static DatasetManagement.Data.obtainData;
+
 import FunctionalitiesSoftware.FindReservation;
 import FunctionalitiesSoftware.RoomRecords;
+
+import java.util.Date;
+
 
 /**
  *
@@ -100,9 +105,32 @@ public class AguileraEsclasansLeizaola {
 //        
 //        tree.printTree();
         
+
    
 //        System.out.println(tree.searchRoom(60).getId());
+
+        Date fecha = new Date();
+        HashTable hashtable = new HashTable(10);
+        hashtable.insertar(3,"jhgjdh" , "hhghsgc", "gshdsb", "6ghssd","ghdgs", fecha , 3);
+         hashtable.insertar(2,"adri" , "aguic", "adriana34", "656hc","0424122", fecha , 6);
+         hashtable.insertar(1,"juan" , "biar", "juan6465", "837497","0414256", fecha , 7);
+         hashtable.insertar(4,"jjose" , "agu", "hudgc6483b", "mdvj4","0426737", fecha , 9);
+         hashtable.insertar(5,"vale" , "lopez", "gvale7742", "726482hd","04126724", fecha , 8);
+        
+         System.out.println(hashtable.imprimir("jhgjdh","hhghsgc") );
+         System.out.println(hashtable.imprimir("adri" , "aguic"));
+         System.out.println(hashtable.imprimir("juan" , "biar"));
+         System.out.println(hashtable.imprimir("jjose" , "agu"));
+         System.out.println(hashtable.imprimir("vale" , "lopez"));
+         
+         hashtable.eliminar("adri" , "aguic");
+         hashtable.eliminar("vale" , "lopez");
+         
+         System.out.println(hashtable.imprimir("adri" , "aguic"));
+         System.out.println(hashtable.imprimir("vale" , "lopez"));
+
     }
+    
 
 
 }

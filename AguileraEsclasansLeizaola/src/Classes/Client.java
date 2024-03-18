@@ -20,6 +20,7 @@ public class Client {
     private String phoneNumber;
     private Date arrival; //Que hacemos con las fechas?
     private int room;
+    private Client siguiente;
 
     public Client(int id, String firstName, String LastName, String email, String gender, String phoneNumber, Date arrival, int room) {
         this.id = id;
@@ -30,6 +31,7 @@ public class Client {
         this.phoneNumber = phoneNumber;
         this.arrival = arrival;
         this.room = room;
+        this.siguiente = null;
     }
 
     public Client() {
@@ -147,5 +149,10 @@ public class Client {
         this.room = room;
     }
     
-    
+    public void setSiguiente(Client siguiente){
+        this.siguiente = siguiente;
+    }
+    public Client getSiguiente(){
+        return siguiente;
+    }
 }
