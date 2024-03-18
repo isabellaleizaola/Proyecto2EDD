@@ -8,6 +8,7 @@ package Classes;
  *
  * @author Isabella
  */
+
 public class Record {
    private int id;
    private String firstName;
@@ -15,9 +16,9 @@ public class Record {
    private String email;
    private String gender;
    private String arrival;
-   private String roomNumber;
+   private int roomNumber;
 
-    public Record(int id, String firstName, String lastName, String email, String gender, String arrival, String roomNumber) {
+    public Record(int id, String firstName, String lastName, String email, String gender, String arrival, int roomNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -114,14 +115,14 @@ public class Record {
     /**
      * @return the roomNumber
      */
-    public String getRoomNumber() {
+    public int getRoomNumber() {
         return roomNumber;
     }
 
     /**
      * @param roomNumber the roomNumber to set
      */
-    public void setRoomNumber(String roomNumber) {
+    public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
    

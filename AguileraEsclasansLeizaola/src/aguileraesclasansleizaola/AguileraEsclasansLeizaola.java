@@ -9,6 +9,7 @@ import DataStructures.Tree;
 import DatasetManagement.ConvertData;
 import DatasetManagement.Data;
 import static DatasetManagement.Data.obtainData;
+import FunctionalitiesSoftware.RoomRecords;
 
 /**
  *
@@ -21,7 +22,13 @@ public class AguileraEsclasansLeizaola {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        Tree recordsTree = ConvertData.convertHistory();
+        recordsTree.printTreeRec();
+        
+        
+        RoomRecords newRR = new RoomRecords();
+        newRR.returnRecordsRoom(160).printList();
+        
         //String[] info = Data.stringToArray("test\\Datasets\\Booking_hotel - reservas.csv");
         
         //for (int i = 0; i < info.length; i++){
@@ -46,25 +53,21 @@ public class AguileraEsclasansLeizaola {
 
    //     example.printTree(example.getpRoot(), "", true);
 //        
-//System.out.println(Data.obtainData("test\\Datasets\\Booking_hotel - reservas.csv"));
-
-
-
 
 
     //Prueba d balancear
         Tree tree = new Tree();
-        Reservation resevacion = new Reservation(4,"s","s","s","s","s","S","s","s");
-        Reservation resevacion1 = new Reservation(2,"s","s","s","s","s","S","s","s");
-        Reservation resevacion2 = new Reservation(3,"s","s","s","s","s","S","s","s");
-        Reservation resevacion3 = new Reservation(5,"s","s","s","s","s","S","s","s");
-        Reservation resevacion4 = new Reservation(6,"s","s","s","s","s","S","s","s");
-        Reservation resevacion5 = new Reservation(7,"s","s","s","s","s","S","s","s");
-        Reservation resevacion6 = new Reservation(1,"s","s","s","s","s","S","s","s");
-        Reservation resevacion7 = new Reservation(85,"s","s","s","s","s","S","s","s");
-        Reservation resevacion8 = new Reservation(90,"s","s","s","s","s","S","s","s");
-        Reservation resevacion9 = new Reservation(13,"s","s","s","s","s","S","s","s");
-        
+        Reservation resevacion = new Reservation(15,"s","s","s","s","s","S","s","s");
+        Reservation resevacion1 = new Reservation(15,"s","s","s","s","s","S","s","s");
+        Reservation resevacion2 = new Reservation(20,"s","s","s","s","s","S","s","s");
+        Reservation resevacion3 = new Reservation(10,"s","s","s","s","s","S","s","s");
+        Reservation resevacion4 = new Reservation(60,"s","s","s","s","s","S","s","s");
+        Reservation resevacion5 = new Reservation(50,"s","s","s","s","s","S","s","s");
+        Reservation resevacion6 = new Reservation(45,"s","s","s","s","s","S","s","s");
+        Reservation resevacion7 = new Reservation(30,"s","s","s","s","s","S","s","s");
+        Reservation resevacion8 = new Reservation(25,"s","s","s","s","s","S","s","s");
+        Reservation resevacion9 = new Reservation(35,"s","s","s","s","s","S","s","s");
+        Reservation resevacion10 = new Reservation(40,"s","s","s","s","s","S","s","s");
 
         tree.insertReservation(resevacion);
         tree.insertReservation(resevacion1);
@@ -73,6 +76,9 @@ public class AguileraEsclasansLeizaola {
         tree.insertReservation(resevacion3);
         tree.insertReservation(resevacion5);
         tree.insertReservation(resevacion7);
+        tree.insertReservation(resevacion9);
+        tree.insertReservation(resevacion4);
+        tree.insertReservation(resevacion10);
         tree.insertReservation(resevacion8);
        
       
@@ -93,7 +99,7 @@ public class AguileraEsclasansLeizaola {
         tree.printTree();
         
    
-
+        System.out.println(tree.searchRoom(60).getId());
     }
 
 

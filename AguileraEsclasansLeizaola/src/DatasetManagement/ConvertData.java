@@ -9,6 +9,8 @@ import DataStructures.Node;
 import DataStructures.Tree;
 import static DatasetManagement.Data.obtainData;
 import static DatasetManagement.Data.stringToArray;
+import Classes.Record;
+import DataStructures.List;
 
 /**
  *
@@ -66,9 +68,46 @@ public class ConvertData {
         public static Tree convertHistory(){
 
         String[] data = Data.stringToArray("test\\Datasets\\Booking_hotel - Histórico.csv");
+//        for (int i = 0; i< data.length; i++){
+//            System.out.println(data[i]);  
+//        }
         
         Tree recordsTree = new Tree();
         
+//        ci,primer_nombre,apellido,email,genero,llegada,num_hab
+//11.706.881,Ax,Hugland,ahugland1p@cpanel.net,Male,08/06/2022,160
+//62.360.039,Dieter,Plaster,dplaster7c@reddit.com,Male,08/06/2022,291
+        
+        for (int i = 1; i < data.length; i++ ){
+            String[] record = data[i].split(",");
+            int idClient = Integer.valueOf(record[0].replace(".", "").trim());
+
+            String firstName = record[1].trim();
+ 
+            String lastName = record[2].trim();
+            String email = record[3].trim();
+            String gender = record[4].trim();
+            String arrivalDate = record[5].trim();
+            int roomNumber = Integer.valueOf(record[6].trim());
+            
+            Record newRecord = new Record(idClient, firstName, lastName, email, gender, arrivalDate, roomNumber);
+            
+            if (recordsTree.getpRoot() == null){
+                
+            }
+
+            if (recordsTree.searchRoom(roomNumber) != null){
+                Node node = recordsTree.searchRoom(roomNumber);
+                List nuevaLista = (List) node.getData();
+                nuevaLista.AddRecordToList(newRecord);
+                node.setData(nuevaLista);
+            }else{
+                recordsTree.insertRecord(newRecord);
+            }
+            
+            
+
+        }
         
         return recordsTree;
     }

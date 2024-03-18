@@ -11,22 +11,7 @@ import java.util.Date;
  * @author Isabella
  */
 public class Reservation {
-    //ci,primer_nombre,segundo_nombre,email,genero,tipo_hab,celular,llegada,salida
-    //ci,primer_nombre,apellido,email,genero,llegada,num_hab
-//    private Client client;
-//    private String typeRoom;
-//    private Date salida;
-//    ci,primer_nombre,apellido,email,genero,llegada,num_hab
     
-    
-//    ci,primer_nombre,segundo_nombre,email,genero,tipo_hab,celular,llegada,salida
-//13.502.927,Evered,Ralestone,eralestone0@ask.com,Male,doble,(648) 8757440,14/10/2023,20/10/2023
-//13.369.274,Berna,Lawly,blawly1@privacy.gov.au,Female,doble,(984) 2395498,15/08/2023,24/08/2023
-//17.614.312,Marti,Meconi,mmeconi2@mozilla.org,Female,suite,(581) 7713030,12/08/2023,22/08/2023
-//18.383.175,Jennifer,Allworthy,jallworthy3@squidoo.com,Female,doble,(647) 9910223,02/10/2023,03/10/2023
-//12.902.463,Kalli,Rickhuss,krickhuss4@nyu.edu,Female,doble,(161) 8724477,02/07/2023,03/07/2023
-//14.597.844,Julianna,Gauld,jgauld5@dailymotion.com,Female,simple,(214) 5216557,05/07/2023,24/07/2023
-//17.347.235,Debera,Cohen,dcohen6@scientificamerican.com,Female,triple,(277) 7802138,26/09/2023,01/10/20
     private int id;
     private String clientFirstName;
     private String clientLastName;
