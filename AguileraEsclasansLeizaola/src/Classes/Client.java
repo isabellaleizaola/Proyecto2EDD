@@ -18,11 +18,11 @@ public class Client {
     private String email;
     private String gender;
     private String phoneNumber;
-    private Date arrival; //Que hacemos con las fechas?
+    private String arrival; //Que hacemos con las fechas?
     private int room;
     private Client siguiente;
 
-    public Client(int id, String firstName, String LastName, String email, String gender, String phoneNumber, Date arrival, int room) {
+    public Client(int id, String firstName, String LastName, String email, String gender, String phoneNumber, String arrival, int room) {
         this.id = id;
         this.firstName = firstName;
         this.LastName = LastName;
@@ -124,14 +124,14 @@ public class Client {
     /**
      * @return the arrival
      */
-    public Date getArrival() {
+    public String getArrival() {
         return arrival;
     }
 
     /**
      * @param arrival the arrival to set
      */
-    public void setArrival(Date arrival) {
+    public void setArrival(String arrival) {
         this.arrival = arrival;
     }
 
