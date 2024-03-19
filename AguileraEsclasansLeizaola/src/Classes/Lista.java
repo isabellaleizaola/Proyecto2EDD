@@ -17,7 +17,7 @@ public class Lista {
         primero= null;
         tamaño = 0;
     }
-    public void insertar(int id, String firstName, String LastName, String email, String gender, String phoneNumber, Date arrival, int room){
+    public void insertar(int id, String firstName, String LastName, String email, String gender, String phoneNumber, String arrival, int room){
         Client client = new Client (id, firstName, LastName, email, gender, phoneNumber, arrival, room);
         client.setSiguiente(this.primero);
         primero = client;

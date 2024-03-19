@@ -35,7 +35,7 @@ public class HashTable {
             return hash % tamano;
         
         }
-        public void insertar(int id, String firstName, String LastName, String email, String gender, String phoneNumber, Date arrival, int room){
+        public void insertar(int id, String firstName, String LastName, String email, String gender, String phoneNumber, String arrival, int room){
             int posicion = this.Hash(firstName, LastName);
             this.clientes[posicion].insertar(id, firstName, LastName, email, gender, phoneNumber, arrival, room);
         }
