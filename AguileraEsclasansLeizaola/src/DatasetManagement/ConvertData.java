@@ -4,6 +4,8 @@
  */
 package DatasetManagement;
 
+import Classes.Client;
+import Classes.HashTable;
 import Classes.Reservation;
 import DataStructures.Node;
 import DataStructures.Tree;
@@ -37,11 +39,10 @@ public class ConvertData {
         for (int i = 1; i < info.length; i++) {
             String[] person = info[i].split(",");
 
-            
             int id = Integer.valueOf(person[0].replace(".", "").trim());
 
             String firstName = person[1].trim();
- 
+
             String lastName = person[2].trim();
             String email = person[3].trim();
             String gender = person[4].trim();
@@ -51,7 +52,6 @@ public class ConvertData {
             String departureDate = person[8].trim();
 
             Reservation reservationInfo = new Reservation(id, firstName, lastName, email, gender, typeOfRoom, phone, arrivalDate, departureDate);
-
 
             if (reservationsTree.getpRoot() == null) {
                 Node root = new Node(reservationInfo, reservationInfo.getId());
@@ -63,53 +63,82 @@ public class ConvertData {
         }
         return reservationsTree;
     }
-    
 
-        public static Tree convertHistory(){
+    public static Tree convertHistory() {
 
         String[] data = Data.stringToArray("test\\Datasets\\Booking_hotel - Histórico.csv");
 //        for (int i = 0; i< data.length; i++){
 //            System.out.println(data[i]);  
 //        }
-        
+
         Tree recordsTree = new Tree();
-        
+
 //        ci,primer_nombre,apellido,email,genero,llegada,num_hab
 //11.706.881,Ax,Hugland,ahugland1p@cpanel.net,Male,08/06/2022,160
 //62.360.039,Dieter,Plaster,dplaster7c@reddit.com,Male,08/06/2022,291
-        
-        for (int i = 1; i < data.length; i++ ){
+        for (int i = 1; i < data.length; i++) {
             String[] record = data[i].split(",");
             int idClient = Integer.valueOf(record[0].replace(".", "").trim());
 
             String firstName = record[1].trim();
- 
+
             String lastName = record[2].trim();
             String email = record[3].trim();
             String gender = record[4].trim();
             String arrivalDate = record[5].trim();
             int roomNumber = Integer.valueOf(record[6].trim());
-            
+
             Record newRecord = new Record(idClient, firstName, lastName, email, gender, arrivalDate, roomNumber);
-            
-            if (recordsTree.getpRoot() == null){
-                
+
+            if (recordsTree.getpRoot() == null) {
+
             }
 
-            if (recordsTree.searchRoom(roomNumber) != null){
+            if (recordsTree.searchRoom(roomNumber) != null) {
                 Node node = recordsTree.searchRoom(roomNumber);
                 List nuevaLista = (List) node.getData();
                 nuevaLista.AddRecordToList(newRecord);
                 node.setData(nuevaLista);
-            }else{
+            } else {
                 recordsTree.insertRecord(newRecord);
             }
-            
-            
 
         }
-        
+
         return recordsTree;
+    }
+
+    public static HashTable convertStatus() {
+
+        String[] data = Data.stringToArray("test\\Datasets\\Booking_hotel - estado.csv");
+//        for (int i = 0; i< data.length; i++){
+//            System.out.println(data[i]);  
+//        }
+
+        //Adriana esto hay que cambiarlo, solo lo puse porque sino, no corre el codigo
+        //Lo que necesito que coloques es la tabla hash que vas a crear
+        HashTable ht = new HashTable(2);
+
+//num_hab,primer_nombre,apellido,email,genero,celular,llegada
+//157,Chrissy,Abbis,cabbis4c@home.pl,Male,(900) 3961419,01/07/2023
+//123,Meade,Abramchik,mabramchik3e@opensource.org,Female,(398) 6399581,07/07/2023
+        for (int i = 1; i < data.length; i++) {
+            String[] record = data[i].split(",");
+            int roomNumber = Integer.valueOf(record[0].replace(".", "").trim());
+
+            String firstName = record[1].trim();
+
+            String lastName = record[2].trim();
+            String email = record[3].trim();
+            String gender = record[4].trim();
+            String celular = record[5].trim();
+            String arrivalDate = record[6].trim();
+
+            Client newClient = new Client(roomNumber, firstName, lastName, email, gender, celular, arrivalDate);
+
+            //Adriana aqui tienes que agregar una linea de codigo donde se agregue newClient a la hash table
+        }
+        return ht;
     }
 
 }
