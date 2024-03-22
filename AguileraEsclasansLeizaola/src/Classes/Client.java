@@ -14,8 +14,8 @@ public class Client {
     //ci,primer_nombre,apellido,email,genero,llegada,num_hab
     
     //num_hab,primer_nombre,apellido,email,genero,celular,llegada
-//157,Chrissy,Abbis,cabbis4c@home.pl,Male,(900) 3961419,01/07/2023
-//123,Meade,Abramchik,mabramchik3e@opensource.org,Female,(398) 6399581,07/07/2023
+    //157,Chrissy,Abbis,cabbis4c@home.pl,Male,(900) 3961419,01/07/2023
+    //123,Meade,Abramchik,mabramchik3e@opensource.org,Female,(398) 6399581,07/07/2023
     
     private int roomNumber;
     private String firstName;
@@ -24,6 +24,7 @@ public class Client {
     private String gender;
     private String phoneNumber;
     private String arrivalDate; 
+    private Client siguiente;
 
     public Client(int roomNumber, String firstName, String LastName, String email, String gender, String phoneNumber, String arrival) {
         this.roomNumber = roomNumber;
@@ -33,6 +34,7 @@ public class Client {
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.arrivalDate = arrival;
+        this.siguiente = null;
     }
     
 
@@ -131,7 +133,7 @@ public class Client {
     /**
      * @return the arrival
      */
- 
+
 
     /**
      * @return the roomNumber
@@ -159,5 +161,12 @@ public class Client {
      */
     public void setArrivalDate(String arrivalDate) {
         this.arrivalDate = arrivalDate;
+    }
+    
+    public void setSiguiente(Client siguiente){
+        this.siguiente = siguiente;
+}
+    public Client getSiguiente(){
+        return siguiente;
     }
 }
