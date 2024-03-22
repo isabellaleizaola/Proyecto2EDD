@@ -13,6 +13,9 @@ import static DatasetManagement.Data.obtainData;
 import static DatasetManagement.Data.stringToArray;
 import Classes.Record;
 import DataStructures.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  *
@@ -110,35 +113,74 @@ public class ConvertData {
 
     public static HashTable convertStatus() {
 
-        String[] data = Data.stringToArray("test\\Datasets\\Booking_hotel - estado.csv");
-//        for (int i = 0; i< data.length; i++){
-//            System.out.println(data[i]);  
+//        String[] data = Data.stringToArray("test\\Datasets\\Booking_hotel - estado.csv");
+////        for (int i = 0; i< data.length; i++){
+////            System.out.println(data[i]);  
+////        }
+//
+//        //Adriana esto hay que cambiarlo, solo lo puse porque sino, no corre el codigo
+//        //Lo que necesito que coloques es la tabla hash que vas a crear
+//        HashTable ht = new HashTable(2);
+//
+////num_hab,primer_nombre,apellido,email,genero,celular,llegada
+////157,Chrissy,Abbis,cabbis4c@home.pl,Male,(900) 3961419,01/07/2023
+////123,Meade,Abramchik,mabramchik3e@opensource.org,Female,(398) 6399581,07/07/2023
+//        for (int i = 1; i < data.length; i++) {
+//            String[] record = data[i].split(",");
+//            int roomNumber = Integer.valueOf(record[0].replace(".", "").trim());
+//
+//            String firstName = record[1].trim();
+//
+//            String lastName = record[2].trim();
+//            String email = record[3].trim();
+//            String gender = record[4].trim();
+//            String celular = record[5].trim();
+//            String arrivalDate = record[6].trim();
+//
+//            Client newClient = new Client(roomNumber, firstName, lastName, email, gender, celular, arrivalDate);
+//
+//            //Adriana aqui tienes que agregar una linea de codigo donde se agregue newClient a la hash table
 //        }
+//        return ht;
 
-        //Adriana esto hay que cambiarlo, solo lo puse porque sino, no corre el codigo
-        //Lo que necesito que coloques es la tabla hash que vas a crear
-        HashTable ht = new HashTable(2);
+        HashTable tablaHash = new HashTable(100); // Crear una HashTable con un tamaño adecuado
 
-//num_hab,primer_nombre,apellido,email,genero,celular,llegada
-//157,Chrissy,Abbis,cabbis4c@home.pl,Male,(900) 3961419,01/07/2023
-//123,Meade,Abramchik,mabramchik3e@opensource.org,Female,(398) 6399581,07/07/2023
-        for (int i = 1; i < data.length; i++) {
-            String[] record = data[i].split(",");
-            int roomNumber = Integer.valueOf(record[0].replace(".", "").trim());
+        String csvFile = "test\\Datasets\\Booking_hotel - estado.csv"; // Ruta del archivo CSV
+        String line;
+        String csvSplitBy = ",";
 
-            String firstName = record[1].trim();
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            // Leer el archivo línea por línea
+            int con = 0;
+            while ((line = br.readLine()) != null) {
+                if (con == 0) {
+                    con++;
+                } else {
+                    // Separar los campos de cada línea por la coma
+                    String[] datos = line.split(csvSplitBy);
 
-            String lastName = record[2].trim();
-            String email = record[3].trim();
-            String gender = record[4].trim();
-            String celular = record[5].trim();
-            String arrivalDate = record[6].trim();
+                    int id = con - 1;
+                    String firstName = datos[1];
+                    String lastName = datos[2];
+                    String email = datos[3];
+                    String gender = datos[4];
+                    String phoneNumber = datos[5];
+                    String arrival = datos[6];
+                    int room;
+                    if (datos[0] == "") {
+                        room = 0;
+                    } else {
+                        room = Integer.parseInt(datos[0]);
+                    }
 
-            Client newClient = new Client(roomNumber, firstName, lastName, email, gender, celular, arrivalDate);
-
-            //Adriana aqui tienes que agregar una linea de codigo donde se agregue newClient a la hash table
+                    // Insertar los datos en la HashTable
+                    tablaHash.insertar(id, firstName, lastName, email, gender, phoneNumber, arrival, room);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return ht;
+        return tablaHash;
     }
 
 }

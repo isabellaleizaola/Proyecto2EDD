@@ -24,6 +24,7 @@ public class Client {
     private String gender;
     private String phoneNumber;
     private String arrivalDate; 
+    private Client siguiente;
 
     public Client(int roomNumber, String firstName, String LastName, String email, String gender, String phoneNumber, String arrival) {
         this.roomNumber = roomNumber;
@@ -33,7 +34,9 @@ public class Client {
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.arrivalDate = arrival;
+        this.siguiente = null;
     }
+    
     
 
     
@@ -131,9 +134,7 @@ public class Client {
     /**
      * @return the arrival
      */
- 
-
-    /**
+/**
      * @return the roomNumber
      */
     public int getRoomNumber() {
@@ -159,5 +160,19 @@ public class Client {
      */
     public void setArrivalDate(String arrivalDate) {
         this.arrivalDate = arrivalDate;
+    }
+
+    /**
+     * @return the siguiente
+     */
+    public Client getSiguiente() {
+        return siguiente;
+    }
+
+    /**
+     * @param siguiente the siguiente to set
+     */
+    public void setSiguiente(Client siguiente) {
+        this.siguiente = siguiente;
     }
 }
