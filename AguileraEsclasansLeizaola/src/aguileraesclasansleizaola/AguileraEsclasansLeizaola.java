@@ -20,8 +20,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-
-
+// Daniel estuvo aqui
+ 
 /**
  *
  * @author Isabella
@@ -156,7 +156,7 @@ HashTable tablaHash = new HashTable(100); // Crear una HashTable con un tamaño 
    
 //        System.out.println(tree.searchRoom(60).getId());
 
-        
+       
 
     }
     
