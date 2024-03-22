@@ -43,11 +43,13 @@ public class Lista {
         }
         return aux;
     }
-    public void imprimir(){
+    public String imprimir(){
+        String s = "";
         Client aux = this.primero;
         while(aux !=null){
-            System.out.println(aux.getFirstName()+ aux.getLastName()+ aux.getRoomNumber());
+            s = (aux.getFirstName()+ aux.getLastName()+ aux.getRoomNumber());
             aux = aux.getSiguiente();
         }
+        return s;
     }
 }

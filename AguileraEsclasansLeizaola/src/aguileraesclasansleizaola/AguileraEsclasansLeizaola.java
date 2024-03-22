@@ -95,9 +95,10 @@ HashTable tablaHash = new HashTable(100); // Crear una HashTable con un tamaño 
             System.out.println(tablaHash.imprimir("Giuseppe","Zywicki"));
         }
         
-
+        ConvertData cd = new ConvertData();
         Tree example = ConvertData.ConvertRegisters();
-        
+        tablaHash = ConvertData.convertStatus();
+        System.out.println(tablaHash.print());
 //       System.out.println(example.getpRoot().getData().toString());
 //       
 //        if (example.getpRoot() != null) {

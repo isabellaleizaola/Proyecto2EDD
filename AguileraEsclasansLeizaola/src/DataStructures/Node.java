@@ -16,7 +16,7 @@ public class Node {
     private int id;
     private int height;
     private Node leftSon;
-
+    public boolean ocupada;
     private Node rightSon;
 
 
@@ -24,6 +24,7 @@ public class Node {
         this.data = data;
         this.leftSon = leftSon;
         this.rightSon = rigthSon;
+        this.ocupada = false;
     }
 
     public Node(List data, int id) {

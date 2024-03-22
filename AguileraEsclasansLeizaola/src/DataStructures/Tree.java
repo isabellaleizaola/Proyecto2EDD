@@ -14,7 +14,7 @@ import Classes.Record;
  */
 public class Tree {
 
-    private Node pRoot;
+    public Node pRoot;
 
     public Tree(Node pRoot) {
         this.pRoot = pRoot;

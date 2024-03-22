@@ -4,6 +4,7 @@
  */
 package Classes;
 
+import DataStructures.Node;
 import DataStructures.Tree;
 
 /**
@@ -30,4 +31,27 @@ public class Checkin {
 //        }
 //        
 //    }
+    public void ChekInCi(int cedula){
+        //Buscas la reserva que tenga esa cedula
+        Node reserva = this.reservacion.searchReservation(cedula);
+        
+        if(reserva != null){
+            //Deberia haber una funcion que busque una Habitacion del tipo que reservó el cilente y que esté vacía
+//            recordsTree f = this.habitacion.SearchEmpty(found.get, habitacion.getRaiz());
+        Node habitacion = null;
+            if(habitacion != null){
+                //Guardas al cliente en el HashTable de huesdes, con el numero de la habitacion que conseguiste
+                this.huespedes.Insert(reserva.getData(),reserva.getLastname(), habitacion.getH());
+                //Marcas la habitacion como visitada 
+                habitacion.ocupada = true;
+                System.out.println("Cliente: " + reserva.getFirstname() + " " + reserva.getLastname() + "\n" + "Habitacion "+ reserva.getHabitacion());
+                System.out.println("Se ha realizado los cambios perfectamente");
+            }else{
+                System.out.println("popopopopopop");
+                System.out.println("La habitacion que se habia pedido sigue ocupada");
+            }
+        }else{
+            System.out.println("Por la cedula ingresada " + cedula + " no se encontro reservaciones");
+        }
+    }
 }

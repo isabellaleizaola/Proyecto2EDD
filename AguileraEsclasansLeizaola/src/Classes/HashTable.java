@@ -56,4 +56,11 @@ public class HashTable {
             }
 
     }
+    public String print(){
+           String r = "";
+           for (int i = 0; i < this.tamano; i++) {
+               r += this.clientes[i].imprimir() + "\n";
+           }
+           return r;
+       }
 }

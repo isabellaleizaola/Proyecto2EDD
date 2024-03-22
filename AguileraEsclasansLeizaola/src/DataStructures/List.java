@@ -44,15 +44,16 @@ public class List {
         }
     }
     
-    public void printList(){
+    public String printList(){
+        String r = "";
         if (!isEmpty()){
             NodeForList aux = pFirst;
             while (aux != null){
-                System.out.println(aux.getData());
+                r+=(aux.getData());
                 aux = aux.getpNext();
             }
         }
- 
+        return r;
     }
 
     /**

@@ -117,14 +117,17 @@ public class ConvertData {
 
         //Adriana esto hay que cambiarlo, solo lo puse porque sino, no corre el codigo
         //Lo que necesito que coloques es la tabla hash que vas a crear
-        HashTable ht = new HashTable(2);
+        HashTable ht = new HashTable(300);
 
 //num_hab,primer_nombre,apellido,email,genero,celular,llegada
 //157,Chrissy,Abbis,cabbis4c@home.pl,Male,(900) 3961419,01/07/2023
 //123,Meade,Abramchik,mabramchik3e@opensource.org,Female,(398) 6399581,07/07/2023
         for (int i = 1; i < data.length; i++) {
             String[] record = data[i].split(",");
-            int roomNumber = Integer.valueOf(record[0].replace(".", "").trim());
+            try{
+                
+            
+            int roomNumber = Integer.parseInt(record[0].replace(".", "").trim());
 
             String firstName = record[1].trim();
 
@@ -133,11 +136,17 @@ public class ConvertData {
             String gender = record[4].trim();
             String celular = record[5].trim();
             String arrivalDate = record[6].trim();
-
-            Client newClient = new Client(roomNumber, firstName, lastName, email, gender, celular, arrivalDate);
-
-            //Adriana aqui tienes que agregar una linea de codigo donde se agregue newClient a la hash table
-        }
+            
+//            Client newClient = new Client(roomNumber, firstName, lastName, email, gender, celular, arrivalDate);
+            ht.insertar(roomNumber, firstName, lastName, email, gender, gender, arrivalDate, roomNumber);
+            
+//Adriana aqui tienes que agregar una linea de codigo donde se agregue newClient a la hash table
+            }catch(Exception e){
+                
+                    }
+            
+            
+            }
         return ht;
     }
 
