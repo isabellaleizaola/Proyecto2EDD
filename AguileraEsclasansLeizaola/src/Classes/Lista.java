@@ -17,8 +17,8 @@ public class Lista {
         primero= null;
         tamaño = 0;
     }
-    public void insertar(int id, String firstName, String LastName, String email, String gender, String phoneNumber, String arrival, int room){
-        Client client = new Client (id, firstName, LastName, email, gender, phoneNumber, arrival, room);
+    public void insertar(int roomNumber, String firstName, String LastName, String email, String gender, String phoneNumber, String arrival){
+        Client client = new Client (roomNumber, firstName, LastName, email, gender, phoneNumber, arrival);
         client.setSiguiente(this.primero);
         primero = client;
         tamaño ++;
@@ -46,7 +46,7 @@ public class Lista {
     public void imprimir(){
         Client aux = this.primero;
         while(aux !=null){
-            System.out.println(aux.getFirstName()+ aux.getLastName()+ aux.getRoom());
+            System.out.println(aux.getFirstName()+ aux.getLastName()+ aux.getRoomNumber());
             aux = aux.getSiguiente();
         }
     }
