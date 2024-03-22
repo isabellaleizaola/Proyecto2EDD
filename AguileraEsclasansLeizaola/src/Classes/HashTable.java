@@ -37,7 +37,7 @@ public class HashTable {
         }
         public void insertar(int id, String firstName, String LastName, String email, String gender, String phoneNumber, String arrival, int room){
             int posicion = this.Hash(firstName, LastName);
-            this.clientes[posicion].insertar(id, firstName, LastName, email, gender, phoneNumber, arrival, room);
+            this.clientes[posicion].insertar(id, firstName, LastName, email, gender, phoneNumber, arrival);
         }
         public Client buscar(String firstName, String LastName){
             int posicion = this.Hash(firstName, LastName);
@@ -50,7 +50,7 @@ public class HashTable {
        public String imprimir(String firstName, String LastName){
             Client c = this.buscar(firstName, LastName);
             if(c!= null){
-            return "Nombre: " + c.getFirstName() + "  " + c.getLastName() + " Habitacion:  "+  c.getRoom();
+            return "Nombre: " + c.getFirstName() + "  " + c.getLastName() + " Habitacion:  "+  c.getRoomNumber();
             }else{
                 return "El usuario no existe";
             }

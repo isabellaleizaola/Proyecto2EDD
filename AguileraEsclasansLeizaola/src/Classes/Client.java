@@ -12,45 +12,54 @@ import java.util.Date;
  */
 public class Client {
     //ci,primer_nombre,apellido,email,genero,llegada,num_hab
-    private int id; //cHEQUEAR SI DEBE TENER LOS PUNTOS
+    
+    //num_hab,primer_nombre,apellido,email,genero,celular,llegada
+    //157,Chrissy,Abbis,cabbis4c@home.pl,Male,(900) 3961419,01/07/2023
+    //123,Meade,Abramchik,mabramchik3e@opensource.org,Female,(398) 6399581,07/07/2023
+    
+    private int roomNumber;
     private String firstName;
     private String LastName;
     private String email;
     private String gender;
     private String phoneNumber;
-    private String arrival; //Que hacemos con las fechas?
-    private int room;
+    private String arrivalDate; 
     private Client siguiente;
 
-    public Client(int id, String firstName, String LastName, String email, String gender, String phoneNumber, String arrival, int room) {
-        this.id = id;
+    public Client(int roomNumber, String firstName, String LastName, String email, String gender, String phoneNumber, String arrival) {
+        this.roomNumber = roomNumber;
         this.firstName = firstName;
         this.LastName = LastName;
         this.email = email;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
-        this.arrival = arrival;
-        this.room = room;
+        this.arrivalDate = arrival;
         this.siguiente = null;
     }
+    
+
+    
 
     public Client() {
     }
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
+//    /**
+//     * @return the id
+//     */
+//    public int getId() {
+//        return id;
+//    }
+//
+//    /**
+//     * @param id the id to set
+//     */
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    
+    
+    
     /**
      * @return the firstName
      */
@@ -124,34 +133,39 @@ public class Client {
     /**
      * @return the arrival
      */
-    public String getArrival() {
-        return arrival;
+
+
+    /**
+     * @return the roomNumber
+     */
+    public int getRoomNumber() {
+        return roomNumber;
     }
 
     /**
-     * @param arrival the arrival to set
+     * @param roomNumber the roomNumber to set
      */
-    public void setArrival(String arrival) {
-        this.arrival = arrival;
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
     /**
-     * @return the room
+     * @return the arrivalDate
      */
-    public int getRoom() {
-        return room;
+    public String getArrivalDate() {
+        return arrivalDate;
     }
 
     /**
-     * @param room the room to set
+     * @param arrivalDate the arrivalDate to set
      */
-    public void setRoom(int room) {
-        this.room = room;
+    public void setArrivalDate(String arrivalDate) {
+        this.arrivalDate = arrivalDate;
     }
     
     public void setSiguiente(Client siguiente){
         this.siguiente = siguiente;
-    }
+}
     public Client getSiguiente(){
         return siguiente;
     }
