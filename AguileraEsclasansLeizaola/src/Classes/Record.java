@@ -27,7 +27,8 @@ public class Record {
         this.arrival = arrival;
         this.roomNumber = roomNumber;
     }
-
+    public Record(){}
+    
     /**
      * @return the id
      */
