@@ -54,7 +54,7 @@ public class Menu extends javax.swing.JFrame {
                 CustomersearchActionPerformed(evt);
             }
         });
-        jPanel1.add(Customersearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 170, -1));
+        jPanel1.add(Customersearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 113, 170, 30));
 
         History.setText("Historial de Habitación");
         History.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +62,7 @@ public class Menu extends javax.swing.JFrame {
                 HistoryActionPerformed(evt);
             }
         });
-        jPanel1.add(History, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
+        jPanel1.add(History, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, 30));
 
         Reservationsearch.setText("Búsqueda de Reservación");
         Reservationsearch.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +78,7 @@ public class Menu extends javax.swing.JFrame {
                 CheckinActionPerformed(evt);
             }
         });
-        jPanel1.add(Checkin, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 90, -1));
+        jPanel1.add(Checkin, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 90, 30));
 
         Checkout.setText("Check-out");
         Checkout.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +86,7 @@ public class Menu extends javax.swing.JFrame {
                 CheckoutActionPerformed(evt);
             }
         });
-        jPanel1.add(Checkout, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 90, -1));
+        jPanel1.add(Checkout, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 90, 30));
 
         jButton6.setText("X");
         jButton6.addActionListener(new java.awt.event.ActionListener() {

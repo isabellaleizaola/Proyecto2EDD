@@ -4,6 +4,10 @@
  */
 package Interfaces;
 
+import Classes.Client;
+import FunctionalitiesSoftware.FindCustomer;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gigie
@@ -30,37 +34,50 @@ public class CustomerSearch extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        Name = new javax.swing.JTextField();
+        LastName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        GoBackCustomerSearch = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        SearchClient = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Búsqueda de Clientes");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                NameActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
+        jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 200, -1));
+
+        LastName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LastNameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 200, -1));
 
         jLabel2.setText("Nombre:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
 
         jLabel3.setText("Apellido:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
-        jButton1.setText("Buscar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
+        GoBackCustomerSearch.setText("Regresar al menú principal");
+        GoBackCustomerSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GoBackCustomerSearchActionPerformed(evt);
+            }
+        });
+        jPanel1.add(GoBackCustomerSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
 
         jButton6.setText("X");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -70,18 +87,91 @@ public class CustomerSearch extends javax.swing.JFrame {
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
+        SearchClient.setText("Buscar");
+        SearchClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchClientActionPerformed(evt);
+            }
+        });
+        jPanel1.add(SearchClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_NameActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void GoBackCustomerSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoBackCustomerSearchActionPerformed
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_GoBackCustomerSearchActionPerformed
+    
+    public String capitalizeFirstLetter(String input) {
+    if (input == null || input.isEmpty()) {
+        return input; // Si el string es nulo o vacío, devolverlo sin cambios
+    } else {
+        return input.substring(0, 1).toUpperCase() + input.substring(1); // Capitalizar la primera letra y concatenar el resto del string
+    }
+}
+    
+    private void SearchClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchClientActionPerformed
+
+        try {
+            String name1 = Name.getText().trim().toLowerCase();
+            String lastName1 = LastName.getText().trim().toLowerCase();
+            String name = capitalizeFirstLetter(name1);
+            String lastName = capitalizeFirstLetter(lastName1);
+            
+
+            // Verificar si el nombre no es un String válido
+            if (!name.matches("[\\p{L}]+") || !lastName.matches("[\\p{L}]+")) {
+                if (!name.matches("[\\p{L}]+")) {
+                    JOptionPane.showMessageDialog(rootPane, "El nombre solo puede contener letras");
+
+                }
+
+                // Verificar si el apellido no es un String válido
+                if (!lastName.matches("[\\p{L}]+")) {
+                    JOptionPane.showMessageDialog(rootPane, "El apellido solo puede contener letras");
+
+                }
+                return;
+            }
+
+            FindCustomer fc = new FindCustomer();
+            Client client = fc.CustomerSearch(name, lastName);
+
+            if (client != null) {
+                String roomNumber = Integer.toString(client.getRoomNumber());
+                String email = client.getEmail();
+                String gender = client.getGender();
+                String phoneNumber = client.getPhoneNumber();
+                String arrivalDate = client.getArrivalDate();
+
+                String text = "Nombre: " + name + "\n" + "Apellido: " + lastName + "\n" + "Número de habitación: " + roomNumber + "\n" + "Email: " + "\n" + email + "\n" + "Género: " + gender + "\n" + "Número de teléfono: " + phoneNumber + "\n" + "Fecha de llegada: " + arrivalDate;
+
+                JOptionPane.showMessageDialog(rootPane, text);
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "No existe un cliente registrado con ese nombre y ese apellido");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al procesar los datos");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_SearchClientActionPerformed
+
+    private void LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LastNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,13 +209,14 @@ public class CustomerSearch extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton GoBackCustomerSearch;
+    private javax.swing.JTextField LastName;
+    private javax.swing.JTextField Name;
+    private javax.swing.JButton SearchClient;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

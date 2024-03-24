@@ -37,6 +37,7 @@ public class List {
         if (!isEmpty()){
             while(aux.getpNext() != null){
                 aux = aux.getpNext();
+                size ++;
             }
             aux.setpNext(newNode);
         }else{

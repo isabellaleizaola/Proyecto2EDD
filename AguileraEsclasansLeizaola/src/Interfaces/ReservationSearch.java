@@ -4,6 +4,11 @@
  */
 package Interfaces;
 
+import Classes.Reservation;
+import DataStructures.Node;
+import FunctionalitiesSoftware.FindReservation;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gigie
@@ -31,31 +36,37 @@ public class ReservationSearch extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        IdClient = new javax.swing.JTextField();
+        GoBackReservationSearch = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        SearchReservationById = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Búsqueda de Reservación");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
 
         jLabel2.setText("Ingrese la cédula del cliente:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 130, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
-        jButton1.setText("Regresar al menú principal");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        IdClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                IdClientActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
+        jPanel1.add(IdClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 130, -1));
+
+        GoBackReservationSearch.setText("Regresar al menú principal");
+        GoBackReservationSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GoBackReservationSearchActionPerformed(evt);
+            }
+        });
+        jPanel1.add(GoBackReservationSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
 
         jButton6.setText("X");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -65,8 +76,13 @@ public class ReservationSearch extends javax.swing.JFrame {
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
-        jButton2.setText("Buscar");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+        SearchReservationById.setText("Buscar");
+        SearchReservationById.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchReservationByIdActionPerformed(evt);
+            }
+        });
+        jPanel1.add(SearchReservationById, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
@@ -77,9 +93,43 @@ public class ReservationSearch extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void GoBackReservationSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoBackReservationSearchActionPerformed
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_GoBackReservationSearchActionPerformed
+
+    private void SearchReservationByIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchReservationByIdActionPerformed
+        try {
+            String id = IdClient.getText();
+            int idnum = Integer.parseInt(id);
+            FindReservation fr = new FindReservation();
+            Node reservation1 = fr.getReservationByClientId(idnum);
+            if (reservation1 == null) {
+                JOptionPane.showMessageDialog(rootPane, "No existe una reservación con esa cédula");
+            } else {
+                String idNumber = Integer.toString(reservation1.getId());
+                Reservation reservationWanted = (Reservation) reservation1.getData();
+                String firstName = reservationWanted.getClientFirstName();
+                String lastName = reservationWanted.getClientLastName();
+                String email = reservationWanted.getClientEmail();
+                String gender = reservationWanted.getClientGender();
+                String typeOfRoom = reservationWanted.getTypeOfRoom();
+                String phoneNumber = reservationWanted.getClientPhone();
+                String dateOfArrival = reservationWanted.getDateOfArrival();
+                String dateOfDeparture = reservationWanted.getDateOfDeparture();
+
+                JOptionPane.showMessageDialog(rootPane, "Cédula: " + idNumber + "\nNombre: " + firstName + "\nApellido: " + lastName + "\nEmail: " + email + "\nGénero: " + gender + "\nTipo de habitación: " + typeOfRoom + "\nNúmero de teléfono: " + phoneNumber + "\nFecha de llegada: " + dateOfArrival + "\nFecha de salida: " + dateOfDeparture);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "La cédula es un número. Solo puede ingresar caracteres que sean números");
+
+        }
+    }//GEN-LAST:event_SearchReservationByIdActionPerformed
+
+    private void IdClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdClientActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_IdClientActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,12 +167,12 @@ public class ReservationSearch extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton GoBackReservationSearch;
+    private javax.swing.JTextField IdClient;
+    private javax.swing.JButton SearchReservationById;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

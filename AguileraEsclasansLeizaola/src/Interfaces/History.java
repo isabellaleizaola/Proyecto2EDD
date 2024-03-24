@@ -4,6 +4,17 @@
  */
 package Interfaces;
 
+import DataStructures.List;
+import DataStructures.Node;
+import DataStructures.NodeForList;
+import FunctionalitiesSoftware.RoomRecords;
+import javax.swing.JOptionPane;
+import Classes.Record;
+import java.awt.Component;
+import java.awt.Font;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author gigie
@@ -33,6 +44,8 @@ public class History extends javax.swing.JFrame {
         NRoom = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        GoBackHistory = new javax.swing.JButton();
+        SearchHistory = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -40,11 +53,18 @@ public class History extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Ingrese el número de habitación para conocer su historial: ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
-        jPanel1.add(NRoom, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
+        NRoom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NRoomActionPerformed(evt);
+            }
+        });
+        jPanel1.add(NRoom, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 160, 110, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Historial de Habitación");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
 
         jButton6.setText("X");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -54,6 +74,22 @@ public class History extends javax.swing.JFrame {
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
+        GoBackHistory.setText("Regresar al menú principal");
+        GoBackHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GoBackHistoryActionPerformed(evt);
+            }
+        });
+        jPanel1.add(GoBackHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
+
+        SearchHistory.setText("Buscar");
+        SearchHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchHistoryActionPerformed(evt);
+            }
+        });
+        jPanel1.add(SearchHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
@@ -62,6 +98,68 @@ public class History extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void GoBackHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoBackHistoryActionPerformed
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_GoBackHistoryActionPerformed
+
+    private void NRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NRoomActionPerformed
+
+    }//GEN-LAST:event_NRoomActionPerformed
+
+    private void SearchHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchHistoryActionPerformed
+        try {
+            String numberRoom = NRoom.getText().trim();
+            int numberRoomInt = Integer.parseInt(numberRoom);
+            RoomRecords rr = new RoomRecords();
+
+            if ((numberRoomInt <= 300) && (numberRoomInt >= 1)) {
+                List listOfRecords = rr.returnRecordsRoom(numberRoomInt);
+                if (listOfRecords == null) {
+                    JOptionPane.showMessageDialog(rootPane, "Esa habitación no tiene historial");
+                    return;
+                } else {
+                    System.out.println("bien");
+                    NodeForList aux = listOfRecords.getpFirst();
+                    String textForUser = "";
+                    //"Habitación " + Integer.toString(numberRoomInt);
+                    System.out.println(Integer.toString(listOfRecords.getSize()));
+                    for (int i = 0; i + 1 < listOfRecords.getSize(); i++) {
+
+                        String identifier = "\n-----Registro " + Integer.toString(i + 1) + "-----\n";
+                        Record record1 = (Record) aux.getData();
+                        identifier += "\n" + record1.getId() + "\n" + record1.getFirstName() + "\n" + record1.getLastName() + "\n" + record1.getEmail() + "\n" + record1.getGender() + "\n" + record1.getArrival();
+                        System.out.println(identifier);
+                        textForUser += ("\n" + identifier);
+                        aux = aux.getpNext();
+                    }
+
+                    JTextArea textArea = new JTextArea(20, 40);
+                    textArea.setText(textForUser);
+                    Font font = new Font("Arial", Font.PLAIN, 14);
+                    textArea.setFont(font);
+                    textArea.setLineWrap(true);
+                    textArea.setWrapStyleWord(true);
+                    textArea.setEditable(false);
+                    textArea.setFocusable(false);
+                    textArea.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    textArea.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+                    JScrollPane scrollPane = new JScrollPane(textArea);
+
+  
+                    JOptionPane.showMessageDialog(null, scrollPane, "Historial de habitación" + Integer.toString(numberRoomInt), JOptionPane.PLAIN_MESSAGE);
+                }
+
+            }else{
+                JOptionPane.showMessageDialog(null,"Ingresar un numero entre 1 y 300");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Debe ingresar un numero entre el 1 y 300");
+        }
+    }//GEN-LAST:event_SearchHistoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -99,7 +197,9 @@ public class History extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton GoBackHistory;
     private javax.swing.JTextField NRoom;
+    private javax.swing.JButton SearchHistory;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

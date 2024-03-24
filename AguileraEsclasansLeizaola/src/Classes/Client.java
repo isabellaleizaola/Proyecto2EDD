@@ -11,11 +11,6 @@ import java.util.Date;
  * @author Isabella
  */
 public class Client {
-    //ci,primer_nombre,apellido,email,genero,llegada,num_hab
-    
-    //num_hab,primer_nombre,apellido,email,genero,celular,llegada
-//157,Chrissy,Abbis,cabbis4c@home.pl,Male,(900) 3961419,01/07/2023
-//123,Meade,Abramchik,mabramchik3e@opensource.org,Female,(398) 6399581,07/07/2023
     
     private int roomNumber;
     private String firstName;

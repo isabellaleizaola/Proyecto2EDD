@@ -4,12 +4,14 @@
  */
 package Interfaces;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gigie
  */
 public class CheckIn extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form CheckIn
      */
@@ -34,11 +36,12 @@ public class CheckIn extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Name = new javax.swing.JTextField();
+        LastName = new javax.swing.JTextField();
+        Id = new javax.swing.JTextField();
+        GoBackCheckIn = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jButton6.setText("X");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -52,28 +55,35 @@ public class CheckIn extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Check-In");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, -1, -1));
 
         jLabel2.setText("Nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
 
         jLabel3.setText("Apellido");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
 
         jLabel4.setText("Cédula");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
 
-        jButton1.setText("Registrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                NameActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
+        jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 220, -1));
+        jPanel1.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 220, -1));
+        jPanel1.add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 220, -1));
+
+        GoBackCheckIn.setText("Regresar al menú principal");
+        GoBackCheckIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GoBackCheckInActionPerformed(evt);
+            }
+        });
+        jPanel1.add(GoBackCheckIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, -1, -1));
 
         jButton7.setText("X");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -83,14 +93,24 @@ public class CheckIn extends javax.swing.JFrame {
         });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
+        jButton2.setText("Registrar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void GoBackCheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoBackCheckInActionPerformed
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_GoBackCheckInActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         System.exit(0);
@@ -99,6 +119,48 @@ public class CheckIn extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    public String capitalizeFirstLetter(String input) {
+        if (input == null || input.isEmpty()) {
+            return input; // Si el string es nulo o vacío, devolverlo sin cambios
+        } else {
+            return input.substring(0, 1).toUpperCase() + input.substring(1); // Capitalizar la primera letra y concatenar el resto del string
+        }
+    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            String name1 = Name.getText().trim().toLowerCase();
+            String lastName1 = LastName.getText().trim().toLowerCase();
+            String name = capitalizeFirstLetter(name1);
+            String lastName = capitalizeFirstLetter(lastName1);
+            String ID = Id.getText();
+
+            // Verificar si el nombre no es un String válido
+            if (!name.matches("[\\p{L}]+") || !lastName.matches("[\\p{L}]+")) {
+                if (!name.matches("[\\p{L}]+")) {
+                    JOptionPane.showMessageDialog(rootPane, "El nombre solo puede contener letras");
+
+                }
+
+                // Verificar si el apellido no es un String válido
+                if (!lastName.matches("[\\p{L}]+")) {
+                    JOptionPane.showMessageDialog(rootPane, "El apellido solo puede contener letras");
+
+                }
+                Integer.valueOf(ID);
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un numero de cedula valido, sin puntos ni comas.");
+            
+        }
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,7 +198,11 @@ public class CheckIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton GoBackCheckIn;
+    private javax.swing.JTextField Id;
+    private javax.swing.JTextField LastName;
+    private javax.swing.JTextField Name;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
@@ -144,8 +210,5 @@ public class CheckIn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
