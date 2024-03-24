@@ -5,6 +5,7 @@
 package aguileraesclasansleizaola;
 
 import Classes.HashTable;
+import Classes.HashTable;
 import Classes.Reservation;
 import DataStructures.Node;
 import DataStructures.Tree;
@@ -20,6 +21,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 
 /**
  *
@@ -53,8 +55,13 @@ public class AguileraEsclasansLeizaola {
         }
 //
 //        System.out.println(tree.searchRoom(60).getId());
+
         Menu menu = new Menu();
         menu.setVisible(true);
+
+
+       
+
 
     }
 

@@ -4,6 +4,7 @@
  */
 package DatasetManagement;
 
+import Classes.HashTable;
 import Classes.Client;
 import Classes.HashTable;
 import Classes.Reservation;
@@ -104,7 +105,7 @@ public class ConvertData {
 //
 //        //Adriana esto hay que cambiarlo, solo lo puse porque sino, no corre el codigo
 //        //Lo que necesito que coloques es la tabla hash que vas a crear
-//        HashTable ht = new HashTable(2);
+//        HashTable1 ht = new HashTable1(2);
 //
 ////num_hab,primer_nombre,apellido,email,genero,celular,llegada
 ////157,Chrissy,Abbis,cabbis4c@home.pl,Male,(900) 3961419,01/07/2023
@@ -127,7 +128,7 @@ public class ConvertData {
 //        }
 //        return ht;
 
-        HashTable tablaHash = new HashTable(100); // Crear una HashTable con un tamaño adecuado
+        HashTable tablaHash = new HashTable(100); // Crear una HashTable1 con un tamaño adecuado
 
         String csvFile = "test\\Datasets\\Booking_hotel - estado.csv"; // Ruta del archivo CSV
         String line;
@@ -157,7 +158,7 @@ public class ConvertData {
                         room = Integer.parseInt(datos[0]);
                     }
 
-                    // Insertar los datos en la HashTable
+                    // Insertar los datos en la HashTable1
                     tablaHash.insertar(id, firstName, lastName, email, gender, phoneNumber, arrival, room);
                 }
             }

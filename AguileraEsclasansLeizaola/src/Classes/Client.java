@@ -11,6 +11,7 @@ import java.util.Date;
  * @author Isabella
  */
 public class Client {
+
     
     private int roomNumber;
     private String firstName;
@@ -129,7 +130,13 @@ public class Client {
     /**
      * @return the arrival
      */
+
 /**
+=======
+
+
+    /**
+>>>>>>> main
      * @return the roomNumber
      */
     public int getRoomNumber() {
@@ -156,6 +163,7 @@ public class Client {
     public void setArrivalDate(String arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
+
 
     /**
      * @return the siguiente

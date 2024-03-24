@@ -4,6 +4,7 @@
  */
 package FunctionalitiesSoftware;
 
+import Classes.HashTable;
 import Classes.Client;
 import Classes.HashTable;
 import DatasetManagement.ConvertData;

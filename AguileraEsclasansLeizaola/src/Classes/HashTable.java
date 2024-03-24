@@ -4,15 +4,12 @@
  */
 package Classes;
 
-import java.util.Date;
-
 /**
  *
- * @author user
+ * @author Isabella
  */
 public class HashTable {
-
-    Lista[] clientes;
+     Lista[] clientes;
     int tamano;
 
     public HashTable(int tamano) {
@@ -38,10 +35,10 @@ public class HashTable {
 
     }
 
-    public void insertar(int id, String firstName, String LastName, String email, String gender, String phoneNumber, String arrival, int room) {
-        int posicion = this.Hash(firstName, LastName);
-        this.clientes[posicion].insertar(id, firstName, LastName, email, gender, phoneNumber, arrival, room);
-    }
+    public void insertar(int id, String firstName, String LastName, String email, String gender, String phoneNumber, String arrival, int room){
+            int posicion = this.Hash(firstName, LastName);
+            this.clientes[posicion].insertar(id, firstName, LastName, email, gender, phoneNumber, arrival);
+        }
 
     public Client buscar(String firstName, String LastName) {
         int posicion = this.Hash(firstName, LastName);
@@ -62,4 +59,5 @@ public class HashTable {
         }
 
     }
+    
 }
